@@ -7,6 +7,7 @@ from flaskr.mod_pendaftaran.models import Pendaftaran
 class PendaftaranForm(FlaskForm):
     email        = TextField('Email', [Required(message='Email wajib diisi')])
     nama_lengkap  = TextField('Nama', [Required(message='Nama wajib diisi')])
+    jk             = TextField('Gender', [Required(message='Persetujuan wajib dipilih')])
     tempat_tinggal  = TextField('Alamat', [Required(message='Alamat wajib diisi')])
     nohp            = TextField('No.Hp', [Required(message='No.Hp wajib diisi')])
     pekerjaaan      = TextField('Pekerjaan', [Required(message='Pekerjaan wajib diisi')])
@@ -32,6 +33,7 @@ class PendaftaranForm(FlaskForm):
 
         self.instance.email = self.email.data
         self.instance.nama_lengkap = self.nama_lengkap.data
+        self.instance.jk = self.jk.data
         self.instance.tempat_tinggal = self.tempat_tinggal.data
         self.instance.nohp = self.nohp.data
         self.instance.pekerjaaan = self.pekerjaaan.data

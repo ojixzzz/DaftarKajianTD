@@ -13,6 +13,7 @@ class Pendaftaran(db.Document):
     masalah_penciuman = db.StringField()
     persetujuan       = db.StringField()
     skor              = db.IntField(default=0)
+    jk              = db.StringField(default="ikhwan")
 
     created    = db.DateTimeField()
     modified   = db.DateTimeField()

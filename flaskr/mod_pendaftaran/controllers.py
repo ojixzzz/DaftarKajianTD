@@ -14,6 +14,7 @@ def index():
     form = PendaftaranForm()
     email = form.email.data
     nama_lengkap = form.nama_lengkap.data
+    jk = form.jk.data
     tempat_tinggal = form.tempat_tinggal.data
     nohp = form.nohp.data
     pekerjaaan = form.pekerjaaan.data
@@ -25,8 +26,23 @@ def index():
 
     dt_awal = datetime(datetime.now().year, datetime.now().month, datetime.now().day, hour = 0, minute = 0, second = 0)
     dt_akhir = datetime(datetime.now().year, datetime.now().month, datetime.now().day, hour = 23, minute = 59, second = 59)
+
+    hariini = datetime.now().weekday()
+    if hariini == 0:
+        dt_awal = dt_awal
+    elif hariini == 1:
+        dt_awal = dt_awal - timedelta(days=1)
+    elif hariini == 2:
+        dt_awal = dt_awal - timedelta(days=2)
+    elif hariini == 3:
+        dt_awal = dt_awal
+    elif hariini == 4:
+        dt_awal = dt_awal - timedelta(days=1)
+    else:
+        return render_template("pendaftaran_tutup.html", data=data)
+
     _pendaftar_today = Pendaftaran.objects.filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
-    if _pendaftar_today.count() > 29:
+    if _pendaftar_today.count() > 50:
         return render_template("pendaftaran_selesai_full.html", data=data)
 
     sessi_nohp = session.get('nohp')
@@ -37,7 +53,8 @@ def index():
         _pendaftar_user = Pendaftaran.objects(nohp=sessi_nohp).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir)).first()
         if _pendaftar_user:
             data = {
-                "nama" : _pendaftar_user.nama_lengkap
+                "nama" : _pendaftar_user.nama_lengkap,
+                "tanggal" : datetime.now()
             }
             if _pendaftar_user.skor > 3:
                 return render_template("pendaftaran_selesai_diterima.html", data=data)
@@ -45,10 +62,7 @@ def index():
                 return render_template("pendaftaran_selesai_ditolak.html", data=data)
 
     if request.method == 'POST':
-        if _pendaftar_today.count() > 29:
-            return render_template("pendaftaran_selesai_full.html", data=data)
-
-        if email and nama_lengkap and tempat_tinggal and nohp and pekerjaaan and keluar_kota and status_lingkungan and sakit and masalah_penciuman and persetujuan:
+        if jk and email and nama_lengkap and tempat_tinggal and nohp and pekerjaaan and keluar_kota and status_lingkungan and sakit and masalah_penciuman and persetujuan:
             skor = 0
             if keluar_kota == "tidak":
                 skor+=1
@@ -58,11 +72,17 @@ def index():
                 skor+=1
             if masalah_penciuman == "tidak":
                 skor+=1
+
+            _pendaftar_today_ = Pendaftaran.objects(nohp=jk).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
+            if _pendaftar_today_.count() > 25:
+                return render_template("pendaftaran_selesai_full.html", data=data)
+
             form.save(skor)
             session['nohp'] = nohp
 
             data = {
-                "nama" : nama_lengkap
+                "nama" : nama_lengkap,
+                "tanggal" : datetime.now()
             }
 
             if skor > 3:
