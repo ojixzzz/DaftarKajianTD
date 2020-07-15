@@ -8,6 +8,10 @@ from flaskr.mod_pendaftaran.models import Pendaftaran
 
 mod_pendaftaran = Blueprint('pendaftaran', __name__, url_prefix='')
 
+@mod_pendaftaran.route('/', subdomain ='amida', methods=['GET', 'POST']) 
+def amida(): 
+    return "Tes subdomain"
+
 @mod_pendaftaran.route('/', methods=['GET', 'POST'])
 def index():
     data = {}
