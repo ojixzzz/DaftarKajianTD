@@ -38,7 +38,7 @@ def amida():
         return render_template("pendaftaran_tutup.html", data=data)
 
     _pendaftar_today = PendaftaranAmida.objects.filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
-    if _pendaftar_today.count() > 30:
+    if _pendaftar_today.count() > 29:
         return render_template("pendaftaran_selesai_full.html", data=data)
 
     sessi_nohp = session.get('nohp')
@@ -70,7 +70,7 @@ def amida():
                 skor+=1
 
             _pendaftar_today_ = PendaftaranAmida.objects.filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
-            if _pendaftar_today_.count() > 25:
+            if _pendaftar_today_.count() > 29:
                 return render_template("pendaftaran_selesai_full.html", data=data)
 
             form.save(skor)
@@ -126,7 +126,7 @@ def index():
         return render_template("pendaftaran_tutup.html", data=data)
 
     _pendaftar_today = Pendaftaran.objects.filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
-    if _pendaftar_today.count() > 50:
+    if _pendaftar_today.count() > 49:
         return render_template("pendaftaran_selesai_full.html", data=data)
 
     sessi_nohp = session.get('nohp')
@@ -157,7 +157,7 @@ def index():
             if masalah_penciuman == "tidak":
                 skor+=1
 
-            _pendaftar_today_ = Pendaftaran.objects(nohp=jk).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
+            _pendaftar_today_ = Pendaftaran.objects(jk=jk).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
             if _pendaftar_today_.count() > 25:
                 return render_template("pendaftaran_selesai_full.html", data=data)
 
