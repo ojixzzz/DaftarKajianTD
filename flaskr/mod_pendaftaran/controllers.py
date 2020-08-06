@@ -38,7 +38,7 @@ def amida():
         return render_template("pendaftaran_tutup.html", data=data)
 
     _pendaftar_today = PendaftaranAmida.objects(skor=4).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
-    if _pendaftar_today.count() > 29:
+    if _pendaftar_today.count() > 39:
         return render_template("pendaftaran_selesai_full.html", data=data)
 
     sessi_nohp = session.get('nohp')
@@ -70,7 +70,7 @@ def amida():
                 skor+=1
 
             _pendaftar_today_ = PendaftaranAmida.objects(skor=4).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
-            if _pendaftar_today_.count() > 29:
+            if _pendaftar_today_.count() > 39:
                 return render_template("pendaftaran_selesai_full.html", data=data)
 
             form.save(skor)
