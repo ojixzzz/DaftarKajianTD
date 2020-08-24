@@ -126,7 +126,7 @@ def index():
         return render_template("pendaftaran_tutup.html", data=data)
 
     _pendaftar_today = Pendaftaran.objects(skor=4).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
-    if _pendaftar_today.count() > 49:
+    if _pendaftar_today.count() > 69:
         return render_template("pendaftaran_selesai_full.html", data=data)
 
     sessi_nohp = session.get('nohp')
@@ -158,7 +158,7 @@ def index():
                 skor+=1
 
             _pendaftar_today_ = Pendaftaran.objects(jk=jk, skor=4).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
-            if _pendaftar_today_.count() > 25:
+            if _pendaftar_today_.count() > 35:
                 return render_template("pendaftaran_selesai_full.html", data=data)
 
             form.save(skor)
