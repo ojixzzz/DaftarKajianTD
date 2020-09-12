@@ -9,6 +9,7 @@ class Pendaftaran(db.Document):
     pekerjaaan      = db.StringField()
     keluar_kota     = db.StringField()
     status_lingkungan = db.StringField()
+    status_interaksi = db.StringField(default="tidak")
     sakit             = db.StringField()
     masalah_penciuman = db.StringField()
     persetujuan       = db.StringField()

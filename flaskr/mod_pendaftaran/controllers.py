@@ -103,6 +103,7 @@ def index():
     nohp = form.nohp.data
     pekerjaaan = form.pekerjaaan.data
     keluar_kota = form.keluar_kota.data
+    status_interaksi = form.status_interaksi.data
     status_lingkungan = form.status_lingkungan.data
     sakit = form.sakit.data
     masalah_penciuman = form.masalah_penciuman.data
@@ -113,14 +114,18 @@ def index():
 
     hariini = datetime.now().weekday()
     if hariini == 0:
-        dt_awal = dt_awal
-    elif hariini == 1:
-        dt_awal = dt_awal - timedelta(days=1)
-    elif hariini == 2:
         dt_awal = dt_awal - timedelta(days=2)
+    elif hariini == 1:
+        dt_awal = dt_awal #- timedelta(days=1)
+    elif hariini == 2:
+        dt_awal = dt_awal - timedelta(days=1)
     elif hariini == 3:
         dt_awal = dt_awal
     elif hariini == 4:
+        dt_awal = dt_awal - timedelta(days=1)
+    elif hariini == 5:
+        dt_awal = dt_awal
+    elif hariini == 6:
         dt_awal = dt_awal - timedelta(days=1)
     else:
         return render_template("pendaftaran_tutup.html", data=data)
@@ -146,7 +151,7 @@ def index():
                 return render_template("pendaftaran_selesai_ditolak.html", data=data)
 
     if request.method == 'POST':
-        if jk and email and nama_lengkap and tempat_tinggal and nohp and pekerjaaan and keluar_kota and status_lingkungan and sakit and masalah_penciuman and persetujuan:
+        if jk and email and nama_lengkap and tempat_tinggal and nohp and pekerjaaan and keluar_kota and status_lingkungan and status_interaksi and sakit and masalah_penciuman and persetujuan:
             skor = 0
             if keluar_kota == "tidak":
                 skor+=1
@@ -156,8 +161,10 @@ def index():
                 skor+=1
             if masalah_penciuman == "tidak":
                 skor+=1
+            if status_interaksi == "tidak":
+                skor+=1
 
-            _pendaftar_today_ = Pendaftaran.objects(jk=jk, skor=4).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
+            _pendaftar_today_ = Pendaftaran.objects(jk=jk, skor=5).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
             if _pendaftar_today_.count() > 35:
                 return render_template("pendaftaran_selesai_full.html", data=data)
 

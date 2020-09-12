@@ -12,6 +12,7 @@ class PendaftaranForm(FlaskForm):
     nohp            = TextField('No.Hp', [Required(message='No.Hp wajib diisi')])
     pekerjaaan      = TextField('Pekerjaan', [Required(message='Pekerjaan wajib diisi')])
     keluar_kota      = TextField('Keluar kota', [Required(message='Keluar kota wajib dipilih')])
+    status_interaksi = TextField('Status interaksi', [Required(message='Status interaksi wajib dipilih')])
     status_lingkungan = TextField('Status lingkungan', [Required(message='Status lingkungan wajib dipilih')])
     sakit              = TextField('Sakit', [Required(message='Sakit wajib dipilih')])
     masalah_penciuman  = TextField('Masalah penciuman', [Required(message='Masalah penciuman wajib dipilih')])
@@ -39,6 +40,7 @@ class PendaftaranForm(FlaskForm):
         self.instance.pekerjaaan = self.pekerjaaan.data
         self.instance.keluar_kota = self.keluar_kota.data
         self.instance.status_lingkungan = self.status_lingkungan.data
+        self.instance.status_interaksi = self.status_interaksi.data
         self.instance.sakit = self.sakit.data
         self.instance.masalah_penciuman = self.masalah_penciuman.data
         self.instance.persetujuan = self.persetujuan.data
