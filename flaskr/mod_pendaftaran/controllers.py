@@ -123,14 +123,14 @@ def index():
         dt_awal = dt_awal
     elif hariini == 4:
         dt_awal = dt_awal - timedelta(days=1)
-    elif hariini == 5:
-        dt_awal = dt_awal
-    elif hariini == 6:
-        dt_awal = dt_awal - timedelta(days=1)
+    #elif hariini == 5:
+    #    dt_awal = dt_awal
+    #elif hariini == 6:
+    #    dt_awal = dt_awal - timedelta(days=1)
     else:
         return render_template("pendaftaran_tutup.html", data=data)
 
-    _pendaftar_today = Pendaftaran.objects(skor=4).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
+    _pendaftar_today = Pendaftaran.objects(skor=5).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
     if _pendaftar_today.count() > 69:
         return render_template("pendaftaran_selesai_full.html", data=data)
 
@@ -145,7 +145,7 @@ def index():
                 "nama" : _pendaftar_user.nama_lengkap,
                 "tanggal" : datetime.now()
             }
-            if _pendaftar_user.skor > 3:
+            if _pendaftar_user.skor > 4:
                 return render_template("pendaftaran_selesai_diterima.html", data=data)
             else:
                 return render_template("pendaftaran_selesai_ditolak.html", data=data)
@@ -176,9 +176,9 @@ def index():
                 "tanggal" : datetime.now()
             }
 
-            if skor > 3:
+            if skor > 4:
                 return render_template("pendaftaran_selesai_diterima.html", data=data)
-            elif skor < 4:
+            elif skor < 5:
                 return render_template("pendaftaran_selesai_ditolak.html", data=data)
             else:
                 return render_template("pendaftaran_selesai_ditolak.html", data=data)
