@@ -1,3 +1,4 @@
+import re
 from flask import Blueprint, render_template, request, \
                   flash, g, session, redirect, url_for, abort, redirect
 from flaskr import db
@@ -163,6 +164,18 @@ def index():
                 skor+=1
             if status_interaksi == "tidak":
                 skor+=1
+
+            if len(re.findall("gedhongtengen", tempat_tinggal.lower())) > 0:
+                skor=skor-1
+
+            if len(re.findall("wirobrajan", tempat_tinggal.lower())) > 0:
+                skor=skor-1
+
+            if len(re.findall("sewon", tempat_tinggal.lower())) > 0:
+                skor=skor-1
+
+            if len(re.findall("kasihan", tempat_tinggal.lower())) > 0:
+                skor=skor-1
 
             _pendaftar_today_ = Pendaftaran.objects(jk=jk, skor=5).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
             if _pendaftar_today_.count() > 35:
