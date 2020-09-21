@@ -114,11 +114,11 @@ def index():
 
     hariini = datetime.now().weekday()
     if hariini == 0:
-        dt_awal = dt_awal - timedelta(days=2)
+        dt_awal = dt_awal #- timedelta(days=2)
     elif hariini == 1:
-        dt_awal = dt_awal #- timedelta(days=1)
-    elif hariini == 2:
         dt_awal = dt_awal - timedelta(days=1)
+    elif hariini == 2:
+        dt_awal = dt_awal - timedelta(days=2)
     elif hariini == 3:
         dt_awal = dt_awal
     elif hariini == 4:
