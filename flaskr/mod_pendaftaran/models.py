@@ -15,6 +15,7 @@ class Pendaftaran(db.Document):
     persetujuan       = db.StringField()
     skor              = db.IntField(default=0)
     jk              = db.StringField(default="ikhwan")
+    tipengaji       = db.StringField(default="rabu")
 
     created    = db.DateTimeField()
     modified   = db.DateTimeField()
