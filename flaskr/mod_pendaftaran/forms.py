@@ -17,6 +17,7 @@ class PendaftaranForm(FlaskForm):
     sakit              = TextField('Sakit', [Required(message='Sakit wajib dipilih')])
     masalah_penciuman  = TextField('Masalah penciuman', [Required(message='Masalah penciuman wajib dipilih')])
     persetujuan = TextField('Persetujuan', [Required(message='Persetujuan wajib dipilih')])
+    donatur              = TextField('Donatur', [Required(message='Donasi wajib dipilih')])
 
     instance = None
     document_class = Pendaftaran
@@ -46,6 +47,7 @@ class PendaftaranForm(FlaskForm):
         self.instance.persetujuan = self.persetujuan.data
         self.instance.skor = skor
         self.instance.tipengaji = "rabu"
+        self.instance.donatur = self.donatur.data
 
         self.instance.created = created
         self.instance.modified = waktu
@@ -66,6 +68,7 @@ class PendaftaranAmidaForm(FlaskForm):
     masalah_penciuman  = TextField('Masalah penciuman', [Required(message='Masalah penciuman wajib dipilih')])
     persetujuan = TextField('Persetujuan', [Required(message='Persetujuan wajib dipilih')])
     hamil             = TextField('Hamil', [Required(message='Hamil wajib dipilih')])
+    donatur              = TextField('Donatur', [Required(message='Donasi wajib dipilih')])
 
     instance = None
     document_class = PendaftaranAmida
@@ -93,6 +96,7 @@ class PendaftaranAmidaForm(FlaskForm):
         self.instance.masalah_penciuman = self.masalah_penciuman.data
         self.instance.persetujuan = self.persetujuan.data
         self.instance.skor = skor
+        self.instance.donatur = self.donatur.data
 
         self.instance.created = created
         self.instance.modified = waktu
@@ -112,6 +116,7 @@ class PendaftaranQohwahForm(FlaskForm):
     sakit              = TextField('Sakit', [Required(message='Sakit wajib dipilih')])
     masalah_penciuman  = TextField('Masalah penciuman', [Required(message='Masalah penciuman wajib dipilih')])
     persetujuan = TextField('Persetujuan', [Required(message='Persetujuan wajib dipilih')])
+    donatur              = TextField('Donatur', [Required(message='Donasi wajib dipilih')])
 
     instance = None
     document_class = Pendaftaran
@@ -141,6 +146,7 @@ class PendaftaranQohwahForm(FlaskForm):
         self.instance.persetujuan = self.persetujuan.data
         self.instance.skor = skor
         self.instance.tipengaji = "qohwah"
+        self.instance.donatur = self.donatur.data
 
         self.instance.created = created
         self.instance.modified = waktu

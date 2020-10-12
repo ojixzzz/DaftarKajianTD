@@ -24,6 +24,7 @@ def qohwah():
     sakit = form.sakit.data
     masalah_penciuman = form.masalah_penciuman.data
     persetujuan = form.persetujuan.data
+    donatur = form.donatur.data
 
     dt_awal = datetime(datetime.now().year, datetime.now().month, datetime.now().day, hour = 0, minute = 0, second = 0)
     dt_akhir = datetime(datetime.now().year, datetime.now().month, datetime.now().day, hour = 23, minute = 59, second = 59)
@@ -59,7 +60,7 @@ def qohwah():
                 return render_template("pendaftaran_selesai_ditolak.html", data=data)
 
     if request.method == 'POST':
-        if email and nama_lengkap and tempat_tinggal and nohp and pekerjaaan and keluar_kota and status_lingkungan and status_interaksi and sakit and masalah_penciuman and persetujuan:
+        if email and nama_lengkap and tempat_tinggal and nohp and pekerjaaan and keluar_kota and status_lingkungan and status_interaksi and sakit and masalah_penciuman and persetujuan and donatur:
             skor = 0
             if keluar_kota == "tidak":
                 skor+=1
@@ -113,6 +114,7 @@ def amida():
     masalah_penciuman = form.masalah_penciuman.data
     persetujuan = form.persetujuan.data
     hamil = form.hamil.data
+    donatur = form.donatur.data
 
     dt_awal = datetime(datetime.now().year, datetime.now().month, datetime.now().day, hour = 0, minute = 0, second = 0)
     dt_akhir = datetime(datetime.now().year, datetime.now().month, datetime.now().day, hour = 23, minute = 59, second = 59)
@@ -148,7 +150,7 @@ def amida():
                 return render_template("pendaftaran_selesai_ditolak.html", data=data)
 
     if request.method == 'POST':
-        if hamil and email and nama_lengkap and tempat_tinggal and nohp and pekerjaaan and keluar_kota and status_lingkungan and sakit and masalah_penciuman and persetujuan:
+        if hamil and email and nama_lengkap and tempat_tinggal and nohp and pekerjaaan and keluar_kota and status_lingkungan and sakit and masalah_penciuman and persetujuan and donatur:
             skor = 0
             if keluar_kota == "tidak":
                 skor+=1
@@ -198,6 +200,7 @@ def index():
     sakit = form.sakit.data
     masalah_penciuman = form.masalah_penciuman.data
     persetujuan = form.persetujuan.data
+    donatur = form.donatur.data
 
     dt_awal = datetime(datetime.now().year, datetime.now().month, datetime.now().day, hour = 0, minute = 0, second = 0)
     dt_akhir = datetime(datetime.now().year, datetime.now().month, datetime.now().day, hour = 23, minute = 59, second = 59)
@@ -209,10 +212,10 @@ def index():
         dt_awal = dt_awal - timedelta(days=1)
     elif hariini == 2:
         dt_awal = dt_awal - timedelta(days=2)
-    elif hariini == 3:
-        dt_awal = dt_awal
-    elif hariini == 4:
-        dt_awal = dt_awal - timedelta(days=1)
+    #elif hariini == 3:
+    #    dt_awal = dt_awal
+    #elif hariini == 4:
+    #    dt_awal = dt_awal - timedelta(days=1)
     #elif hariini == 5:
     #    dt_awal = dt_awal
     #elif hariini == 6:
@@ -241,7 +244,7 @@ def index():
                 return render_template("pendaftaran_selesai_ditolak.html", data=data)
 
     if request.method == 'POST':
-        if jk and email and nama_lengkap and tempat_tinggal and nohp and pekerjaaan and keluar_kota and status_lingkungan and status_interaksi and sakit and masalah_penciuman and persetujuan:
+        if jk and email and nama_lengkap and tempat_tinggal and nohp and pekerjaaan and keluar_kota and status_lingkungan and status_interaksi and sakit and masalah_penciuman and persetujuan and donatur:
             skor = 0
             if keluar_kota == "tidak":
                 skor+=1

@@ -16,6 +16,7 @@ class Pendaftaran(db.Document):
     skor              = db.IntField(default=0)
     jk              = db.StringField(default="ikhwan")
     tipengaji       = db.StringField(default="rabu")
+    donatur       = db.StringField(default="tidak")
 
     created    = db.DateTimeField()
     modified   = db.DateTimeField()
@@ -33,6 +34,7 @@ class PendaftaranAmida(db.Document):
     persetujuan       = db.StringField()
     skor              = db.IntField(default=0)
     hamil              = db.StringField(default="tidak")
+    donatur       = db.StringField(default="tidak")
 
     created    = db.DateTimeField()
     modified   = db.DateTimeField()
