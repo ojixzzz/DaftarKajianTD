@@ -117,7 +117,7 @@ class PendaftaranQohwahForm(FlaskForm):
     document_class = Pendaftaran
 
     def __init__(self, document=None, *args, **kwargs):
-        super(PendaftaranForm, self).__init__(*args, **kwargs)
+        super(PendaftaranQohwahForm, self).__init__(*args, **kwargs)
 
     def save(self, skor):
         waktu = datetime.now()

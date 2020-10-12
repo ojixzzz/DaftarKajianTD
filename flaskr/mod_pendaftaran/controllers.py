@@ -12,10 +12,9 @@ mod_pendaftaran = Blueprint('pendaftaran', __name__, url_prefix='')
 @mod_pendaftaran.route('/qohwah/', methods=['GET', 'POST']) 
 def qohwah():
     data = {}
-    form = PendaftaranForm()
+    form = PendaftaranQohwahForm()
     email = form.email.data
     nama_lengkap = form.nama_lengkap.data
-    jk = form.jk.data
     tempat_tinggal = form.tempat_tinggal.data
     nohp = form.nohp.data
     pekerjaaan = form.pekerjaaan.data
@@ -258,7 +257,7 @@ def index():
             #if len(re.findall("gedhongtengen", tempat_tinggal.lower())) > 0:
             #    skor=skor-1
 
-            _pendaftar_today_ = Pendaftaran.objects(jk=jk, skor=5, , tipengaji="rabu").filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
+            _pendaftar_today_ = Pendaftaran.objects(jk=jk, skor=5, tipengaji="rabu").filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
             if _pendaftar_today_.count() > 35:
                 return render_template("pendaftaran_selesai_full.html", data=data)
 
