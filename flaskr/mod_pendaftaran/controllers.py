@@ -216,10 +216,10 @@ def index():
     #    dt_awal = dt_awal
     #elif hariini == 4:
     #    dt_awal = dt_awal - timedelta(days=1)
-    #elif hariini == 5:
-    #    dt_awal = dt_awal
-    #elif hariini == 6:
-    #    dt_awal = dt_awal - timedelta(days=1)
+    elif hariini == 5:
+        dt_awal = dt_awal
+    elif hariini == 6:
+        dt_awal = dt_awal - timedelta(days=1)
     else:
         return render_template("pendaftaran_tutup.html", data=data)
 
