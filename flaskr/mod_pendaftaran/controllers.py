@@ -224,7 +224,7 @@ def index():
         return render_template("pendaftaran_tutup.html", data=data)
 
     _pendaftar_today = Pendaftaran.objects(skor=5, tipengaji="rabu").filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
-    if _pendaftar_today.count() > 69:
+    if _pendaftar_today.count() > 99:
         return render_template("pendaftaran_selesai_full.html", data=data)
 
     sessi_nohp = session.get('nohp')
@@ -260,9 +260,14 @@ def index():
             #if len(re.findall("gedhongtengen", tempat_tinggal.lower())) > 0:
             #    skor=skor-1
 
-            _pendaftar_today_ = Pendaftaran.objects(jk=jk, skor=5, tipengaji="rabu").filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
-            if _pendaftar_today_.count() > 35:
-                return render_template("pendaftaran_selesai_full.html", data=data)
+            if jk == "akhwat":
+                _pendaftar_today_ = Pendaftaran.objects(jk=jk, skor=5, tipengaji="rabu").filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
+                if _pendaftar_today_.count() > 59:
+                    return render_template("pendaftaran_selesai_full.html", data=data)
+            else:
+                _pendaftar_today_ = Pendaftaran.objects(jk=jk, skor=5, tipengaji="rabu").filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
+                if _pendaftar_today_.count() > 39:
+                    return render_template("pendaftaran_selesai_full.html", data=data)
 
             form.save(skor)
             session['nohp'] = nohp
