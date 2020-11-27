@@ -364,11 +364,11 @@ def tabligh():
                 skor+=1
 
             if jk == "akhwat":
-                _pendaftar_today_ = Pendaftaran.objects(jk=jk, skor=5, tipengaji="rabu").filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
+                _pendaftar_today_ = Pendaftaran.objects(jk=jk, skor=5, tipengaji="tabligh").filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
                 if _pendaftar_today_.count() > 59:
                     return render_template("pendaftaran_selesai_full.html", data=data)
             else:
-                _pendaftar_today_ = Pendaftaran.objects(jk=jk, skor=5, tipengaji="rabu").filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
+                _pendaftar_today_ = Pendaftaran.objects(jk=jk, skor=5, tipengaji="tabligh").filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
                 if _pendaftar_today_.count() > 39:
                     return render_template("pendaftaran_selesai_full.html", data=data)
 
@@ -389,4 +389,4 @@ def tabligh():
         else:
             flash('Error : Coba lagi, silakan isi semua pilihan dengan benar', 'error')
 
-    return render_template("pendaftaran.html", data=data, form=form)
+    return render_template("pendaftaran_tabligh.html", data=data, form=form)
