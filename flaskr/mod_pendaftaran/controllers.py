@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request, \
 from flaskr import db
 from mongoengine.queryset.visitor import Q
 from datetime import datetime, timedelta
-from flaskr.mod_pendaftaran.forms import PendaftaranForm, PendaftaranAmidaForm, PendaftaranQohwahForm
+from flaskr.mod_pendaftaran.forms import PendaftaranForm, PendaftaranAmidaForm, PendaftaranQohwahForm, PendaftaranTablighForm
 from flaskr.mod_pendaftaran.models import Pendaftaran, PendaftaranAmida
 
 mod_pendaftaran = Blueprint('pendaftaran', __name__, url_prefix='')
@@ -292,7 +292,7 @@ def index():
 @mod_pendaftaran.route('/ngaji/', methods=['GET', 'POST'])
 def tabligh():
     data = {}
-    form = PendaftaranForm()
+    form = PendaftaranTablighForm()
     email = form.email.data
     nama_lengkap = form.nama_lengkap.data
     jk = form.jk.data
