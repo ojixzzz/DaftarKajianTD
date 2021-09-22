@@ -4,6 +4,51 @@ from wtforms.validators import Required, Email, EqualTo
 from datetime import datetime
 from flaskr.mod_pendaftaran.models import Pendaftaran, PendaftaranAmida
 
+class PendaftaranFormv2(FlaskForm):
+    nama_lengkap = TextField('Nama', [Required(message='Nama wajib diisi')])
+    usia         = TextField('Usia', [Required(message='Email wajib diisi')])
+    email        = TextField('Email', [Required(message='Email wajib diisi')])
+    jk             = TextField('Gender', [Required(message='Jenis wajib dipilih')])
+    tempat_tinggal  = TextField('Alamat', [Required(message='Alamat wajib diisi')])
+    nohp            = TextField('No.Hp', [Required(message='No.Hp wajib diisi')])
+    pekerjaaan      = TextField('Pekerjaan', [Required(message='Pekerjaan wajib diisi')])
+    hamil           = TextField('Hamil', [Required(message='Hamil wajib diisi')])
+    sakit           = TextField('Sakit', [Required(message='Sakit wajib dipilih')])
+    donatur         = TextField('Donatur', [Required(message='Donasi wajib dipilih')])
+
+    instance = None
+    document_class = Pendaftaran
+
+    def __init__(self, document=None, *args, **kwargs):
+        super(PendaftaranFormv2, self).__init__(*args, **kwargs)
+
+    def save(self, skor, tipengaji):
+        waktu = datetime.now()
+        if self.instance is None:
+            self.instance = self.document_class()
+            created = waktu
+        else:
+            created = self.instance.created
+
+        self.instance.nama_lengkap = self.nama_lengkap.data
+        self.instance.usia = self.usia.data
+        self.instance.email = self.email.data
+        self.instance.jk = self.jk.data
+        self.instance.tempat_tinggal = self.tempat_tinggal.data
+        self.instance.nohp = self.nohp.data
+        self.instance.pekerjaaan = self.pekerjaaan.data
+        self.instance.hamil = self.hamil.data
+        self.instance.sakit = self.sakit.data
+        self.instance.donatur = self.donatur.data
+
+        self.instance.skor = skor
+        self.instance.tipengaji = tipengaji
+        self.instance.created = created
+        self.instance.modified = waktu
+
+        self.instance.save()
+        return self.instance
+
 class PendaftaranForm(FlaskForm):
     email        = TextField('Email', [Required(message='Email wajib diisi')])
     nama_lengkap  = TextField('Nama', [Required(message='Nama wajib diisi')])

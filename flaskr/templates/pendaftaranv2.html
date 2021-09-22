@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Teras Dakwah - Form Pendaftaran Kajian</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Font-->
+    <link rel="stylesheet" type="text/css" href="https://daftar.terasdakwah.com/static/css/opensans-font.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://daftar.terasdakwah.com/static/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <!-- Main Style Css -->
+    <link rel="stylesheet" href="https://daftar.terasdakwah.com/static/css/style.css"/>
+</head>
+<body>
+<div class="page-content">
+    <div class="form-v1-content">
+        <div class="wizard-form">
+            <form class="form-register" method="post" id="form-register">
+                {{ form.csrf_token }}
+
+                <div id="form-total">
+                                    {% with errors = get_flashed_messages(category_filter=["error"]) %}
+                {% if errors %}
+                  {% for error in errors %}
+                      <br>
+                      <div class="alert alert-danger" style="text-align: center;"> <b>""{{ error }}""</b></div>
+                  {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                {% with success = get_flashed_messages(category_filter=["success"]) %}
+                {% if success %}
+                  {% for oke in success %}
+                      <br>
+                      <div class="alert alert-success" style="text-align: center;"> {{ oke }}</div>
+                  {% endfor %}
+                {% endif %}
+                {% endwith %}
+                    <h2>
+                        <p class="step-icon"><span></span></p>
+                        <span class="step-text">Teras Dakwah</span>
+                    </h2>
+                    <section>
+                        <div class="inner">
+                            <div class="wizard-header">
+                                <h3 class="heading">{{ data.namangaji }}</h3>
+                                <p>Assalamu'alaikum teman, mau ikutan {{ data.namangaji }} isi data diri dulu ya, jawab dengan jujur lho hehehe</p>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                    <fieldset>
+                                        <legend>Nama</legend>
+                                        <input type="text" class="form-control" id="nama-lengkap" name="nama_lengkap"
+                                               placeholder="Nama Lengkap" required>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                    <fieldset>
+                                        <legend>Usia</legend>
+                                        <input type="text" class="form-control" id="usia" name="usia"
+                                               placeholder="Usia sekarang" required>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                    <fieldset>
+                                        <legend>Email</legend>
+                                        <input type="text" name="email" id="email" class="form-control"
+                                               pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="contoh@email.com"
+                                               required>
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                    <fieldset>
+                                        <legend>Jenis Kelamin
+                                        </legend>
+                                        <div class="form-radio">
+                                            <input class="input-radio" id="jk-radio1" type="radio" name="jk"
+                                                   value="ikhwan" required>
+                                            <label class="label-radio" for="jk-radio1">Pria</label>
+                                        </div>
+                                        <div class="form-radio">
+                                            <input class="input-radio" id="jk-radio2" type="radio" name="jk"
+                                                   value="akhwat" required>
+                                            <label class="label-radio" for="jk-radio2">Wanita</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                    <fieldset>
+                                        <legend>Alamat</legend>
+                                        <input type="text" class="form-control" id="tempat-tinggal"
+                                               name="tempat_tinggal" placeholder="Tempat tinggal" required>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                    <fieldset>
+                                        <legend>Nomer HP / WA</legend>
+                                        <input type="text" class="form-control" id="wa" name="nohp"
+                                               placeholder="08xxxxxxx" required>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                    <fieldset>
+                                        <legend>Pekerjaan</legend>
+                                        <input type="text" class="form-control" id="pekerjaan" name="pekerjaaan"
+                                               placeholder="Pekerjaan" required>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            {% if data.namangaji=="#ngajiamida" %}
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                    <fieldset>
+                                        <legend>Sedang Hamil / Menyusui?
+                                        </legend>
+                                        <div class="form-radio">
+                                            <input class="input-radio" id="hamil-radio1" type="radio" name="hamil"
+                                                   value="tidak" required>
+                                            <label class="label-radio" for="hamil-radio1">Belum</label>
+                                        </div>
+                                        <div class="form-radio">
+                                            <input class="input-radio" id="hamil-radio2" type="radio" name="hamil"
+                                                   value="hamil" required>
+                                            <label class="label-radio" for="hamil-radio2">Hamil</label>
+                                        </div>
+                                        <div class="form-radio">
+                                            <input class="input-radio" id="hamil-radio3" type="radio" name="hamil"
+                                                   value="menyusui" required>
+                                            <label class="label-radio" for="hamil-radio3">Menyusui</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            {% else %}
+                            <input type="hidden" class="form-control" name="hamil" value="tidak">
+                            {% endif %}
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                    <fieldset>
+                                        <legend>Apakah sedang pilek, flu, demam, atau sakit tenggorokan?
+                                        </legend>
+                                        <div class="form-radio">
+                                            <input class="input-radio" id="sakit-radio1" type="radio" name="sakit"
+                                                   value="ya" required>
+                                            <label class="label-radio" for="sakit-radio1">Ya</label>
+                                        </div>
+                                        <div class="form-radio">
+                                            <input class="input-radio" id="sakit-radio2" type="radio" name="sakit"
+                                                   value="tidak" required>
+                                            <label class="label-radio" for="sakit-radio2">Tidak</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                    <fieldset>
+                                        <legend>Mau ikutan Sedekah Jumat?
+                                        </legend>
+                                        <div class="form-radio">
+                                            <input class="input-radio" id="donatur-radio1" type="radio" name="donatur"
+                                                   value="ya" required>
+                                            <label class="label-radio" for="donatur-radio1">Ya</label>
+                                        </div>
+                                        <div class="form-radio">
+                                            <input class="input-radio" id="donatur-radio2" type="radio" name="donatur"
+                                                   value="tidak" required>
+                                            <label class="label-radio" for="donatur-radio2">Tidak</label>
+                                        </div>
+                                        <div class="form-radio">
+                                            <input class="input-radio" id="donatur-radio3" type="radio" name="donatur"
+                                                   value="sudah" required>
+                                            <label class="label-radio" for="donatur-radio3">Sudah</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div style="text-align: center;">© Terasdakwah - 2021</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://daftar.terasdakwah.com/static/js/jquery.steps.js"></script>
+<script src="https://daftar.terasdakwah.com/static/js/main.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
