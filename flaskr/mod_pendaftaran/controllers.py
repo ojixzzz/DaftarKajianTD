@@ -59,6 +59,27 @@ def ngajisantai():
     #return render_template("pendaftaran_tutup.html", data=data)
     return createform(dt_awal, dt_akhir, tipengaji, namangaji, 20, 20, 0)
 
+@mod_pendaftaran.route('/ngajisantai/', methods=['GET', 'POST']) 
+def ngajiserius():
+    tipengaji = "ngajiserius"
+    namangaji = "#ngajiserius"
+    data      = {"namangaji": namangaji}
+    dt_awal = datetime(datetime.now().year, datetime.now().month, datetime.now().day, hour = 0, minute = 0, second = 0)
+    dt_akhir = datetime(datetime.now().year, datetime.now().month, datetime.now().day, hour = 23, minute = 59, second = 59)
+
+    hariini = datetime.now().weekday()
+    if hariini == 0:
+        dt_awal = dt_awal
+    elif hariini == 1:
+        dt_awal = dt_awal - timedelta(days=1)
+    elif hariini == 2:
+        dt_awal = dt_awal - timedelta(days=2)
+    else:
+        return render_template("pendaftaran_tutup.html", data=data)
+
+    #return render_template("pendaftaran_tutup.html", data=data)
+    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 20, 20, 0)
+
 @mod_pendaftaran.route('/amida/', methods=['GET', 'POST']) 
 def amida(): 
     tipengaji = "amida"
