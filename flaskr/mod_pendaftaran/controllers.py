@@ -99,7 +99,7 @@ def amida():
         return render_template("pendaftaran_tutup.html", data=data)
 
     #return render_template("pendaftaran_tutup.html", data=data)
-    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 25, 0, 25)
+    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 29, 0, 29)
 
 @mod_pendaftaran.route('/ngaji/', methods=['GET', 'POST'])
 def tabligh():
