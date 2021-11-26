@@ -36,9 +36,9 @@ def index():
         return render_template("pendaftaran_tutup.html", data=data)
 
     #return render_template("pendaftaran_tutup.html", data=data)
-    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 75, 35, 40)
+    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 170, 70, 100)
 
-@mod_pendaftaran.route('/ngajisantai/', methods=['GET', 'POST']) 
+@mod_pendaftaran.route('/ngajisantai/', methods=['GET', 'POST'])
 def ngajisantai():
     tipengaji = "ngajisantai"
     namangaji = "#ngajisantai"
@@ -99,7 +99,7 @@ def amida():
         return render_template("pendaftaran_tutup.html", data=data)
 
     #return render_template("pendaftaran_tutup.html", data=data)
-    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 29, 0, 29)
+    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 100, 0, 100)
 
 @mod_pendaftaran.route('/ngaji/', methods=['GET', 'POST'])
 def tabligh():
@@ -129,7 +129,7 @@ def tabligh():
         return render_template("pendaftaran_tutup.html", data=data)
 
     #return render_template("pendaftaran_tutup.html", data=data)
-    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 75, 35, 40)
+    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 200, 90, 110)
 
 @mod_pendaftaran.route('/kajian/', methods=['GET', 'POST'])
 def tabligh2():
@@ -159,7 +159,7 @@ def tabligh2():
         return render_template("pendaftaran_tutup.html", data=data)
 
     #return render_template("pendaftaran_tutup.html", data=data)
-    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 75, 35, 40)
+    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 200, 90, 110)
 
 def createform(dt_awal, dt_akhir, tipengaji, namangaji, quota_total, quota_l, quota_p):
     data = {"namangaji": namangaji}
