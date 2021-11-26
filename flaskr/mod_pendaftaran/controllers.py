@@ -1,11 +1,11 @@
-import re
+import re, json
 from flask import Blueprint, render_template, request, \
                   flash, g, session, redirect, url_for, abort, redirect
 from flaskr import db
 from mongoengine.queryset.visitor import Q
 from datetime import datetime, timedelta
 from flaskr.mod_pendaftaran.forms import PendaftaranFormv2, PendaftaranForm, PendaftaranAmidaForm, PendaftaranQohwahForm, PendaftaranTablighForm, PendaftaranTablighForm2
-from flaskr.mod_pendaftaran.models import Pendaftaran, PendaftaranAmida
+from flaskr.mod_pendaftaran.models import Pendaftaran, PendaftaranAmida, Provinces, Regencies, Districts, Villages
 
 mod_pendaftaran = Blueprint('pendaftaran', __name__, url_prefix='')
 
@@ -32,8 +32,8 @@ def index():
         dt_awal = dt_awal
     elif hariini == 6:
         dt_awal = dt_awal - timedelta(days=1)
-    else:
-        return render_template("pendaftaran_tutup.html", data=data)
+    #else:
+    #    return render_template("pendaftaran_tutup.html", data=data)
 
     #return render_template("pendaftaran_tutup.html", data=data)
     return createform(dt_awal, dt_akhir, tipengaji, namangaji, 170, 70, 100)
@@ -168,12 +168,15 @@ def createform(dt_awal, dt_akhir, tipengaji, namangaji, quota_total, quota_l, qu
     usia         = form.usia.data
     email        = form.email.data
     jk           = form.jk.data
-    tempat_tinggal = form.tempat_tinggal.data
     nohp           = form.nohp.data
     pekerjaaan     = form.pekerjaaan.data
     hamil           = form.hamil.data
     sakit          = form.sakit.data
     donatur        = form.donatur.data
+
+    kabupaten = form.kabupaten.data
+    kecamatan = form.kecamatan.data
+    kelurahan = form.kelurahan.data
 
     _pendaftar_today = Pendaftaran.objects(skor=5, tipengaji=tipengaji).filter(Q(created__gte=dt_awal) & Q(created__lte=dt_akhir))
     if _pendaftar_today.count() > (quota_total-1):
@@ -200,7 +203,7 @@ def createform(dt_awal, dt_akhir, tipengaji, namangaji, quota_total, quota_l, qu
                 return render_template("pendaftaranv2_selesai_ditolak.html", data=data)
 
     if request.method == 'POST':
-        if nama_lengkap and usia and email and jk and tempat_tinggal and nohp and pekerjaaan and hamil and sakit and donatur:
+        if nama_lengkap and usia and email and jk and nohp and pekerjaaan and hamil and sakit and donatur and kabupaten and kecamatan and kelurahan:
             skor = 0
             if sakit == "tidak":
                 skor+=5
@@ -725,3 +728,31 @@ def tabligh2():
 
     return render_template("pendaftaran_tabligh.html", data=data, form=form)
 '''
+
+
+@mod_pendaftaran.route('/get_kab/<id>', methods=['GET'])
+def get_kab(id):
+    data = [{'id': '', 'name': 'Kabupaten/Kota'}]
+    if id != "":
+        regencies = Regencies.objects(province=id).limit(100)
+        for regency in regencies:
+            data.append({'id': str(regency.id), 'name': regency.name})
+    return json.dumps(data)
+
+@mod_pendaftaran.route('/get_kec/<id>', methods=['GET'])
+def get_kec(id):
+    data = [{'id': '', 'name': 'Kecamatan'}]
+    if id != "":
+        districts = Districts.objects(regency=id).limit(100)
+        for datax in districts:
+            data.append({'id': str(datax.id), 'name': datax.name})
+    return json.dumps(data)
+
+@mod_pendaftaran.route('/get_desa/<id>', methods=['GET'])
+def get_desa(id):
+    data = [{'id': '', 'name': 'Kelurahan'}]
+    if id != "":
+        vilages = Villages.objects(district=id).limit(100)
+        for datax in vilages:
+            data.append({'id': str(datax.id), 'name': datax.name})
+    return json.dumps(data)
