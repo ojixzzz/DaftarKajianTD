@@ -2,19 +2,29 @@ from flask_wtf import FlaskForm
 from wtforms import TextField, PasswordField, TextAreaField, SelectField
 from wtforms.validators import Required, Email, EqualTo
 from datetime import datetime
-from flaskr.mod_pendaftaran.models import Pendaftaran, PendaftaranAmida
+from flaskr.mod_pendaftaran.models import Pendaftaran, PendaftaranAmida, Regencies
+
+def getkabdt():
+    data = []
+    regencies = Regencies.objects(province=str("5824f56f9cc60d0553001bc3")).limit(100)
+    for regency in regencies:
+        data.append((regency.id, regency.name))
+    return data
 
 class PendaftaranFormv2(FlaskForm):
     nama_lengkap = TextField('Nama', [Required(message='Nama wajib diisi')])
     usia         = TextField('Usia', [Required(message='Email wajib diisi')])
     email        = TextField('Email', [Required(message='Email wajib diisi')])
     jk             = TextField('Gender', [Required(message='Jenis wajib dipilih')])
-    tempat_tinggal  = TextField('Alamat', [Required(message='Alamat wajib diisi')])
     nohp            = TextField('No.Hp', [Required(message='No.Hp wajib diisi')])
-    pekerjaaan      = TextField('Pekerjaan', [Required(message='Pekerjaan wajib diisi')])
+    pekerjaaan      = SelectField('Pekerjaan', [Required(message='Pekerjaan wajib diisi')])
     hamil           = TextField('Hamil', [Required(message='Hamil wajib diisi')])
     sakit           = TextField('Sakit', [Required(message='Sakit wajib dipilih')])
     donatur         = TextField('Donatur', [Required(message='Donasi wajib dipilih')])
+
+    kabupaten = SelectField('Kabupaten', [Required(message='wajib diisi')], choices = getkabdt())
+    kecamatan = SelectField('Kecamatan', choices = [])
+    kelurahan = SelectField('Kelurahan', choices = [])
 
     instance = None
     document_class = Pendaftaran
@@ -34,7 +44,6 @@ class PendaftaranFormv2(FlaskForm):
         self.instance.usia = self.usia.data
         self.instance.email = self.email.data
         self.instance.jk = self.jk.data
-        self.instance.tempat_tinggal = self.tempat_tinggal.data
         self.instance.nohp = self.nohp.data
         self.instance.pekerjaaan = self.pekerjaaan.data
         self.instance.hamil = self.hamil.data
@@ -45,6 +54,10 @@ class PendaftaranFormv2(FlaskForm):
         self.instance.tipengaji = tipengaji
         self.instance.created = created
         self.instance.modified = waktu
+
+        self.instance.kabupaten = self.kabupaten.data
+        self.instance.kecamatan = self.kecamatan.data
+        self.instance.kelurahan = self.kelurahan.data
 
         self.instance.save()
         return self.instance

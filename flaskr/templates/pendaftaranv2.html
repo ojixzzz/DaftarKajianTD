@@ -59,7 +59,7 @@
                                 <div class="form-holder form-holder-2">
                                     <fieldset>
                                         <legend>Usia</legend>
-                                        <input type="text" class="form-control" id="usia" name="usia"
+                                        <input type="number" class="form-control" id="usia" name="usia"
                                                placeholder="Usia sekarang" required>
                                     </fieldset>
                                 </div>
@@ -97,12 +97,54 @@
                             <div class="form-row">
                                 <div class="form-holder form-holder-2">
                                     <fieldset>
-                                        <legend>Alamat</legend>
-                                        <input type="text" class="form-control" id="tempat-tinggal"
-                                               name="tempat_tinggal" placeholder="Tempat tinggal" required>
+                                    <legend>Kabupaten/Kota</legend>
+                                    <select name="kabupaten" id="kabupaten" required class="form-control" style="height: 50px;border: none;padding-left: 0px;padding-right: 0px;" onchange="getdatakec()">
+                                        <option value="">Kabupaten/Kota</option>
+                                        {% if form.kabupaten %}
+                                        {% for kabupaten in form.kabupaten %}
+                                            {{ kabupaten }}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </select>
                                     </fieldset>
+                                    
                                 </div>
                             </div>
+
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                    <fieldset>
+                                    <legend>Kecamatan</legend>
+                                    <select name="kecamatan" id="kecamatan" required class="form-control" style="height: 50px;border: none;padding-left: 0px;padding-right: 0px;" onchange="getdatadesa()">
+                                        <option value="">Kecamatan</option>
+                                        {% if form.kecamatan %}
+                                        {% for kecamatan in form.kecamatan %}
+                                            {{ kecamatan }}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                    </fieldset>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                    <fieldset>
+                                    <legend>Kelurahan</legend>
+                                    <select name="kelurahan" id="kelurahan" required class="form-control" style="height: 50px;border: none;padding-left: 0px;padding-right: 0px;">
+                                        <option value="">Kelurahan</option>
+                                        {% if form.kelurahan %}
+                                        {% for kelurahan in form.kelurahan %}
+                                            {{ kelurahan }}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                    </fieldset>
+                                    
+                                </div>
+                            </div>
+
                             <div class="form-row">
                                 <div class="form-holder form-holder-2">
                                     <fieldset>
@@ -112,15 +154,26 @@
                                     </fieldset>
                                 </div>
                             </div>
+
                             <div class="form-row">
                                 <div class="form-holder form-holder-2">
                                     <fieldset>
-                                        <legend>Pekerjaan</legend>
-                                        <input type="text" class="form-control" id="pekerjaan" name="pekerjaaan"
-                                               placeholder="Pekerjaan" required>
+                                    <legend>Pekerjaan</legend>
+                                    <select name="pekerjaaan" id="pekerjaaan" required class="form-control" style="height: 50px;border: none;padding-left: 0px;padding-right: 0px;">
+                                        <option value="">Pekerjaan</option>
+                                        <option value="Mahasiswa">Mahasiswa</option>
+                                        <option value="Pelajar">Pelajar</option>
+                                        <option value="PNS">PNS</option>
+                                        <option value="Karyawan Swasta">Karyawan Swasta</option>
+                                        <option value="Wirausaha">Wirausaha</option>
+                                        <option value="IRT">IRT (Ibu Rumah Tangga)</option>
+                                        <option value="Freelance">Freelance</option>
+                                        <option value="Pengangguran">Pengangguran</option>
+                                    </select>
                                     </fieldset>
                                 </div>
                             </div>
+
                             {% if data.namangaji=="#ngajiamida" %}
                             <div class="form-row">
                                 <div class="form-holder form-holder-2">
@@ -169,7 +222,7 @@
                             <div class="form-row">
                                 <div class="form-holder form-holder-2">
                                     <fieldset>
-                                        <legend>Mau ikutan Sedekah Jumat?
+                                        <legend>Kamu mau ikutan "Gerakan Sedekah setiap Jumat"?
                                         </legend>
                                         <div class="form-radio">
                                             <input class="input-radio" id="donatur-radio1" type="radio" name="donatur"
@@ -201,5 +254,50 @@
 <script src="https://daftar.terasdakwah.com/static/js/jquery.steps.js"></script>
 <script src="https://daftar.terasdakwah.com/static/js/main.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+
+<script type="text/javascript">
+  function getdatakota() {
+    $(document).ready(function () {
+      $.getJSON('/get_kab/'+$('#provinsi').val(), function(data) {
+        $('#kabupaten').empty();
+        $.each(data, function(index, element) {
+          $('#kabupaten').append($('<option>', { 
+              value: element.id,
+              text : element.name 
+          }));
+        });
+      });
+    });
+  }
+
+  function getdatakec() {
+    $(document).ready(function () {
+      $.getJSON('/get_kec/'+$('#kabupaten').val(), function(data) {
+        $('#kecamatan').empty();
+        $.each(data, function(index, element) {
+          $('#kecamatan').append($('<option>', { 
+              value: element.id,
+              text : element.name 
+          }));
+        });
+      });
+    });
+  }
+
+  function getdatadesa() {
+    $(document).ready(function () {
+      $.getJSON('/get_desa/'+$('#kecamatan').val(), function(data) {
+        $('#kelurahan').empty();
+        $.each(data, function(index, element) {
+          $('#kelurahan').append($('<option>', { 
+              value: element.id,
+              text : element.name 
+          }));
+        });
+      });
+    });
+  }
+</script>
+
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
