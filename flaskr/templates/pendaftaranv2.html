@@ -258,7 +258,7 @@
 <script type="text/javascript">
   function getdatakota() {
     $(document).ready(function () {
-      $.getJSON('/get_kab/'+$('#provinsi').val(), function(data) {
+      $.getJSON('https://daftar.terasdakwah.com/get_kab/'+$('#provinsi').val(), function(data) {
         $('#kabupaten').empty();
         $.each(data, function(index, element) {
           $('#kabupaten').append($('<option>', { 
@@ -272,7 +272,7 @@
 
   function getdatakec() {
     $(document).ready(function () {
-      $.getJSON('/get_kec/'+$('#kabupaten').val(), function(data) {
+      $.getJSON('https://daftar.terasdakwah.com/get_kec/'+$('#kabupaten').val(), function(data) {
         $('#kecamatan').empty();
         $.each(data, function(index, element) {
           $('#kecamatan').append($('<option>', { 
@@ -286,7 +286,7 @@
 
   function getdatadesa() {
     $(document).ready(function () {
-      $.getJSON('/get_desa/'+$('#kecamatan').val(), function(data) {
+      $.getJSON('https://daftar.terasdakwah.com/get_desa/'+$('#kecamatan').val(), function(data) {
         $('#kelurahan').empty();
         $.each(data, function(index, element) {
           $('#kelurahan').append($('<option>', { 
