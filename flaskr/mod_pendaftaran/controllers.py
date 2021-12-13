@@ -59,7 +59,7 @@ def ngajisantai():
     #return render_template("pendaftaran_tutup.html", data=data)
     return createform(dt_awal, dt_akhir, tipengaji, namangaji, 20, 20, 0)
 
-@mod_pendaftaran.route('/ngajisantai/', methods=['GET', 'POST']) 
+@mod_pendaftaran.route('/ngajiserius/', methods=['GET', 'POST']) 
 def ngajiserius():
     tipengaji = "ngajiserius"
     namangaji = "#ngajiserius"
@@ -129,7 +129,7 @@ def tabligh():
         return render_template("pendaftaran_tutup.html", data=data)
 
     #return render_template("pendaftaran_tutup.html", data=data)
-    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 200, 90, 110)
+    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 300, 120, 180)
 
 @mod_pendaftaran.route('/kajian/', methods=['GET', 'POST'])
 def tabligh2():
@@ -159,7 +159,7 @@ def tabligh2():
         return render_template("pendaftaran_tutup.html", data=data)
 
     #return render_template("pendaftaran_tutup.html", data=data)
-    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 200, 90, 110)
+    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 500, 220, 280)
 
 def createform(dt_awal, dt_akhir, tipengaji, namangaji, quota_total, quota_l, quota_p):
     data = {"namangaji": namangaji}
