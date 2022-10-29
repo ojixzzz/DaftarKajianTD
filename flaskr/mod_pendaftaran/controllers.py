@@ -9,6 +9,34 @@ from flaskr.mod_pendaftaran.models import Pendaftaran, PendaftaranAmida, Provinc
 
 mod_pendaftaran = Blueprint('pendaftaran', __name__, url_prefix='')
 
+@mod_pendaftaran.route('/survei/', methods=['GET', 'POST'])
+def survei():
+    return redirect("https://forms.gle/jcF6wEeFFvz6gcoR9")
+
+@mod_pendaftaran.route('/ngaji/', methods=['GET', 'POST'])
+def ngaji():
+    return redirect("https://forms.gle/YhFQ7UmybWFitmfT8")
+
+@mod_pendaftaran.route('/rating/', methods=['GET', 'POST'])
+def rating():
+    return redirect("https://forms.gle/2WBikbfs4PotnepZA")
+
+@mod_pendaftaran.route('/relawan/', methods=['GET', 'POST'])
+def relawan():
+    return redirect("https://forms.gle/JQ8b6mzK5G3XnSHK8")
+
+@mod_pendaftaran.route('/kpk/', methods=['GET', 'POST'])
+def kpk():
+    return redirect("https://forms.gle/8iduTUVh55bPaPyA7")
+
+@mod_pendaftaran.route('/pahlawan/', methods=['GET', 'POST'])
+def pahlawan():
+    return redirect("https://docs.google.com/forms/d/e/1FAIpQLSdAFChYN_T2lSulur-gAE3nhQ71l4Py07XVr2NmlM_hnvqGkg/viewform")
+
+@mod_pendaftaran.route('/hadits/', methods=['GET', 'POST'])
+def hadits():
+    return redirect("https://docs.google.com/forms/d/e/1FAIpQLScswbJ7EcG04zTFAZenCBpnD7VrZmf0N8j4bHlLhV0Yg9GMhA/viewform")
+
 @mod_pendaftaran.route('/', methods=['GET', 'POST'])
 def index():
     tipengaji = "rabu"
@@ -36,7 +64,7 @@ def index():
     #    return render_template("pendaftaran_tutup.html", data=data)
 
     #return render_template("pendaftaran_tutup.html", data=data)
-    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 170, 70, 100)
+    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 370, 170, 200)
 
 @mod_pendaftaran.route('/ngajisantai/', methods=['GET', 'POST'])
 def ngajisantai():
@@ -57,7 +85,7 @@ def ngajisantai():
         return render_template("pendaftaran_tutup.html", data=data)
 
     #return render_template("pendaftaran_tutup.html", data=data)
-    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 20, 20, 0)
+    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 200, 100, 100)
 
 @mod_pendaftaran.route('/ngajiserius/', methods=['GET', 'POST']) 
 def ngajiserius():
@@ -102,7 +130,7 @@ def amida():
     #return render_template("pendaftaran_tutup.html", data=data)
     return createform(dt_awal, dt_akhir, tipengaji, namangaji, 100, 0, 100)
 
-@mod_pendaftaran.route('/ngaji/', methods=['GET', 'POST'])
+@mod_pendaftaran.route('/ngajix/', methods=['GET', 'POST'])
 def tabligh():
     tipengaji = "tabligh"
     namangaji = "#tabligh"
@@ -130,7 +158,7 @@ def tabligh():
         return render_template("pendaftaran_tutup.html", data=data)
 
     #return render_template("pendaftaran_tutup.html", data=data)
-    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 300, 120, 180)
+    return createform(dt_awal, dt_akhir, tipengaji, namangaji, 500, 220, 280)
 
 @mod_pendaftaran.route('/kajian/', methods=['GET', 'POST'])
 def tabligh2():
