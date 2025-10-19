@@ -1,0 +1,8 @@
+DEBUG = True
+SECRET_KEY = 'xasda4837482!@#@#%#@'
+SEND_FILE_MAX_AGE_DEFAULT = 0
+SESSION_PERMANENT = True
+
+MONGODB_DB = 'terasdakwah'
+MONGODB_HOST = 'localhost'
+MONGODB_PORT = 27017
