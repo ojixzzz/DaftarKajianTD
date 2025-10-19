@@ -9,17 +9,141 @@ from flaskr.mod_pendaftaran.models import Pendaftaran, PendaftaranAmida, Provinc
 
 mod_pendaftaran = Blueprint('pendaftaran', __name__, url_prefix='')
 
+@mod_pendaftaran.route('/kulonprogo/', methods=['GET', 'POST'])
+def kulonprogo():
+    return redirect('https://sedekah.terasdakwah.com/campaign/kp')
+
+@mod_pendaftaran.route('/lombok/', methods=['GET', 'POST'])
+def lombok():
+    return redirect('https://sedekah.terasdakwah.com/campaign/qurbanlombok')
+
+@mod_pendaftaran.route('/palu/', methods=['GET', 'POST'])
+def palu():
+    return redirect('https://sedekah.terasdakwah.com/campaign/qurbanpalu')
+
+@mod_pendaftaran.route('/qurban/', methods=['GET', 'POST'])
+def qurban():
+    return redirect('https://sedekah.terasdakwah.com/campaign/qurbanasyik')
+
+@mod_pendaftaran.route('/keluarga/', methods=['GET', 'POST'])
+def keluarga():
+    return redirect('https://docs.google.com/forms/d/e/1FAIpQLSemlZiDom09XfvnuRqqPFQr9yonIEPFRVqIYTVqXrDwWHYXvg/viewform?usp=dialog')
+
+@mod_pendaftaran.route('/nikah/', methods=['GET', 'POST'])
+def nikah():
+    return redirect('https://bebaju.my.canva.site/teras-dakwah-wedding-invitation')
+
+@mod_pendaftaran.route('/literasi/', methods=['GET', 'POST'])
+def literasi():
+    return redirect('https://forms.gle/M75K4jNdtDVpiBe17')
+
+@mod_pendaftaran.route('/sbs/', methods=['GET', 'POST'])
+def sbs():
+    return redirect('https://forms.gle/9Far1UDT35wu3Ri7A')
+
+@mod_pendaftaran.route('/kmip/', methods=['GET', 'POST'])
+def kmip():
+    return redirect('https://forms.gle/V61sHJWbvm4dXvRV6')
+
+@mod_pendaftaran.route('/cds/', methods=['GET', 'POST'])
+def cds():
+    return redirect('https://forms.gle/wYrACFKmdw4x68Ja8')
+
+@mod_pendaftaran.route('/sirah/', methods=['GET', 'POST'])
+def sirah():
+    return redirect('https://forms.gle/JKP2YyAHW1azD7Km9')
+
+@mod_pendaftaran.route('/camp/', methods=['GET', 'POST'])
+def camp():
+    return redirect("https://sasaguid.my.canva.site/teras-camp-2024")
+
+@mod_pendaftaran.route('/makna/', methods=['GET', 'POST'])
+def makna():
+    return redirect("https://forms.gle/vFJE8KLWCRUtU1E97")
+
+@mod_pendaftaran.route('/shb/', methods=['GET', 'POST'])
+def shb():
+    return redirect("https://forms.gle/Ti3Ei4fEUJq2jzmK9")
+
+@mod_pendaftaran.route('/pranikah/', methods=['GET', 'POST'])
+def pranikah():
+    return redirect("https://forms.gle/v8DRYZaWxVvLwoVt6")
+
+@mod_pendaftaran.route('/sbq/', methods=['GET', 'POST'])
+def sbq():
+    return redirect("https://forms.gle/MHzzeVy9TkpyvWE67")
+
+@mod_pendaftaran.route('/gaza/', methods=['GET', 'POST'])
+def gaza():
+    return redirect("https://docs.google.com/forms/d/e/1FAIpQLSfPBQ3g6UTmDi4dIH3db4SJPDUIr-_cjnI_-LXOff5lb3VC7Q/viewform")
+
+@mod_pendaftaran.route('/kareema/', methods=['GET', 'POST'])
+def kareema():
+    return redirect("https://docs.google.com/forms/d/1aot24aWZJrq2jPtYhgAbUXQFNIMeT9xfZUc_rm89N38/edit")
+
+@mod_pendaftaran.route('/nongki/', methods=['GET', 'POST'])
+def nongki():
+    return redirect("https://docs.google.com/forms/d/1kPv_ZW1qvQNiEHCCxQ8v7JUpNWOarWpxk0FgQp8VPGU/edit")
+
+@mod_pendaftaran.route('/beqen/', methods=['GET', 'POST'])
+def beqen():
+    return redirect("https://docs.google.com/forms/d/1HsQrr0-UdoYNaE2P2xsk6iyPl2EtzRlKpAKe4M2ExQo/viewform?edit_requested=true")
+
+@mod_pendaftaran.route('/keren/', methods=['GET', 'POST'])
+def keren():
+    return redirect("https://docs.google.com/forms/d/10yFlpNAMvjoBSltal1ufWmrkP-HDO4gwGd9vGQewsLo/viewform")
+
+@mod_pendaftaran.route('/akbar/', methods=['GET', 'POST'])
+def akbar():
+    return redirect("https://docs.google.com/forms/d/1tr-jYVklAgEZBV7i30Q2UdBpgDKrPNvyZbvrhkfFi7E/edit")
+
+@mod_pendaftaran.route('/cantik/', methods=['GET', 'POST'])
+def cantik():
+    return redirect("https://forms.gle/tzvkg3yfBTFQxRZ98")
+
+@mod_pendaftaran.route('/curhat/', methods=['GET', 'POST'])
+def curhat():
+    return redirect("https://docs.google.com/forms/d/1kggcrRq0_FHGzhCV7LuphKo9zhIdbk8fk6HQoFe9e6k/edit")
+
+@mod_pendaftaran.route('/puasasyawal/', methods=['GET', 'POST'])
+def puasasyawal():
+    return redirect("https://forms.gle/S1g14wLMqodAmsph6")
+
+@mod_pendaftaran.route('/syawalan/', methods=['GET', 'POST'])
+def syawalan():
+    return redirect("https://forms.gle/AvRpxkDbXfNKkb9m9")
+
+@mod_pendaftaran.route('/caricinta/', methods=['GET', 'POST'])
+def caricinta():
+    return redirect("https://forms.gle/MwHYoR2QtKSuGqu79")
+
+@mod_pendaftaran.route('/cinta/', methods=['GET', 'POST'])
+def cinta():
+    return redirect("https://forms.gle/agjgVrpoWDXFgmxa6")
+
+@mod_pendaftaran.route('/program/', methods=['GET', 'POST'])
+def program():
+    return redirect("https://linktr.ee/programTD")
+
+@mod_pendaftaran.route('/ummi/', methods=['GET', 'POST'])
+def ummi():
+    return redirect("https://docs.google.com/forms/d/e/1FAIpQLSfzidTj4HFN7wXo2kkngGw6qkDyQaJz87q7q6f9R-E2nisWmw/viewform")
+
+@mod_pendaftaran.route('/team/', methods=['GET', 'POST'])
+def team():
+    return redirect("https://forms.gle/sVy6wr2hWVc7BJ7q9")
+
 @mod_pendaftaran.route('/survei/', methods=['GET', 'POST'])
 def survei():
     return redirect("https://forms.gle/jcF6wEeFFvz6gcoR9")
 
 @mod_pendaftaran.route('/ngaji/', methods=['GET', 'POST'])
 def ngaji():
-    return redirect("https://forms.gle/YhFQ7UmybWFitmfT8")
+    return redirect("https://forms.gle/LBoAHzeT7zwhiHSU7")
 
 @mod_pendaftaran.route('/rating/', methods=['GET', 'POST'])
 def rating():
-    return redirect("https://forms.gle/2WBikbfs4PotnepZA")
+    return redirect("https://forms.gle/MaitZTDbbgqhz5su9")
 
 @mod_pendaftaran.route('/relawan/', methods=['GET', 'POST'])
 def relawan():
@@ -35,7 +159,7 @@ def pahlawan():
 
 @mod_pendaftaran.route('/hadits/', methods=['GET', 'POST'])
 def hadits():
-    return redirect("https://docs.google.com/forms/d/e/1FAIpQLScswbJ7EcG04zTFAZenCBpnD7VrZmf0N8j4bHlLhV0Yg9GMhA/viewform")
+    return redirect("https://docs.google.com/forms/d/e/1FAIpQLScqXASeqz6JRkbHU_2VgB9oSTr5ldqP63lxamI2g8DGqcXFCg/viewform?usp=sf_link")
 
 @mod_pendaftaran.route('/', methods=['GET', 'POST'])
 def index():
